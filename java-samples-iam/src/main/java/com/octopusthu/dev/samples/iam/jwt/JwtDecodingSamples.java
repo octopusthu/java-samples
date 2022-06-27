@@ -1,4 +1,4 @@
-package com.octopusthu.dev.security.jwt;
+package com.octopusthu.dev.samples.iam.jwt;
 
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.jwk.source.JWKSource;

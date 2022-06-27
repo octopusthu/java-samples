@@ -1,4 +1,4 @@
-package com.octopusthu.dev.java;
+package com.octopusthu.dev.samples.java;
 
 import java.util.Arrays;
 
