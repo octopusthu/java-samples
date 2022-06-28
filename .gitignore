@@ -3,7 +3,7 @@
 .DS_Store
 
 # maven
-/target
+*/target
 
 # spring boot
 **/resources/application-*.properties
