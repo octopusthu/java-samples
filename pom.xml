@@ -20,6 +20,7 @@
 
     <modules>
         <module>java-samples-java</module>
+        <module>java-samples-spring-boot</module>
         <module>java-samples-iam</module>
         <module>java-samples-redis</module>
     </modules>
