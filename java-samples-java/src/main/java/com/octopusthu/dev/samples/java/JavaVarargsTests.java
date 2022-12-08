@@ -8,10 +8,11 @@ public class JavaVarargsTests {
         varargsMethod("a");
         varargsMethod("b", (String) null);
         varargsMethod("c", (String[]) null);
+        varargsMethod("d", new String[]{});
     }
 
     private static void varargsMethod(String arg, String... varargs) {
-        System.out.println(Arrays.toString(varargs));
+        System.out.println(arg + ": " + Arrays.toString(varargs));
     }
 
 }
