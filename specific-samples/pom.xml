@@ -15,6 +15,7 @@
     <description>Specific Java samples.</description>
 
     <modules>
+        <module>spring-boot-scheduled-tasks-sample</module>
     </modules>
 
 </project>
