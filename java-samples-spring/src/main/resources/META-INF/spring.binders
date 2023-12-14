@@ -1,0 +1,2 @@
+sampleCustomBinder=\
+com.octopusthu.dev.samples.spring.cloud.stream.custombinder.SampleCustomBinderConfiguration
