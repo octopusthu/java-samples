@@ -1,4 +1,4 @@
-package com.octopusthu.dev.samples.spring.cloud.stream.custombinder;
+package com.octopusthu.dev.samples.spring.cloud.stream.binders.sample;
 
 import java.util.Random;
 

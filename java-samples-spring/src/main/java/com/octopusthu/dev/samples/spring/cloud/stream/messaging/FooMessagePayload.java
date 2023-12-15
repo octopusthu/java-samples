@@ -1,5 +1,8 @@
 package com.octopusthu.dev.samples.spring.cloud.stream.messaging;
 
+import lombok.ToString;
+
+@ToString
 public class FooMessagePayload extends DummyMessagePayload {
     private final String foo;
 

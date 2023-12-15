@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    function:
+      definition: sampleFunctionBinding
+    stream:
+      bindings:
+        sampleFunctionBinding-in-0:
+          destination: foo-stream
+          binder: sample
+        sampleFunctionBinding-out-0:
+          destination: bar-stream
+          binder: sample
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - bindings

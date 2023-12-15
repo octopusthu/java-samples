@@ -1,5 +1,6 @@
-package com.octopusthu.dev.samples.spring.cloud.stream.custombinder;
+package com.octopusthu.dev.samples.spring.cloud.stream.binders.sample;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.binder.AbstractMessageChannelBinder;
 import org.springframework.cloud.stream.binder.ConsumerProperties;
 import org.springframework.cloud.stream.binder.ProducerProperties;
@@ -9,22 +10,25 @@ import org.springframework.integration.core.MessageProducer;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
-public class SampleCustomBinder extends
-    AbstractMessageChannelBinder<ConsumerProperties, ProducerProperties, SampleCustomBinderProvisioner> {
+@Slf4j
+public class SampleBinder extends
+    AbstractMessageChannelBinder<ConsumerProperties, ProducerProperties, SampleBinderProvisioner> {
 
-    public SampleCustomBinder(String[] headersToEmbed, SampleCustomBinderProvisioner provisioningProvider) {
+    public SampleBinder(String[] headersToEmbed, SampleBinderProvisioner provisioningProvider) {
         super(headersToEmbed, provisioningProvider);
     }
 
     @Override
     protected MessageHandler createProducerMessageHandler(
         ProducerDestination destination, ProducerProperties producerProperties, MessageChannel errorChannel) {
-        return null;
+        log.info("producer message handler created with destination: " + destination.getName());
+        return new BarMessageHandler(destination);
     }
 
     @Override
     protected MessageProducer createConsumerEndpoint(
         ConsumerDestination destination, String group, ConsumerProperties properties) {
-        return null;
+        log.info("consumer endpoint created with destination: " + destination.getName());
+        return new FooMessageProducer(destination);
     }
 }
