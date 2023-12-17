@@ -1,17 +1,9 @@
 package com.octopusthu.dev.samples.spring.cloud.stream.messaging;
 
-import lombok.ToString;
+public class BarMessagePayload extends DummyMessagePayload<Integer> {
+    private static final String TYPE = "BAR";
 
-@ToString
-public class BarMessagePayload extends DummyMessagePayload {
-    private final String bar;
-
-    public BarMessagePayload(String dummy, String bar) {
-        super(dummy);
-        this.bar = bar;
-    }
-
-    public String getBar() {
-        return bar;
+    public BarMessagePayload(int payload) {
+        super(TYPE, payload);
     }
 }

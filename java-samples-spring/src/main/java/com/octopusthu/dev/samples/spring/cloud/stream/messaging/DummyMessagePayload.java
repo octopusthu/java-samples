@@ -1,13 +1,16 @@
 package com.octopusthu.dev.samples.spring.cloud.stream.messaging;
 
-public class DummyMessagePayload {
-    private final String dummy;
+import lombok.Getter;
+import lombok.ToString;
 
-    public DummyMessagePayload(String dummy) {
-        this.dummy = dummy;
-    }
+@ToString
+@Getter
+public class DummyMessagePayload<T> {
+    private final String type;
+    private final T payload;
 
-    public String getDummy() {
-        return dummy;
+    public DummyMessagePayload(String type, T payload) {
+        this.type = type;
+        this.payload = payload;
     }
 }

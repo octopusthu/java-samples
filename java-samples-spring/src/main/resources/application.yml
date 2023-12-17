@@ -1,14 +1,20 @@
 spring:
   cloud:
     function:
-      definition: sampleFunctionBinding
+      definition: fooToBar;negate
     stream:
       bindings:
-        sampleFunctionBinding-in-0:
-          destination: foo-stream
+        fooToBar-in-0:
+          destination: foo-stream-a
           binder: sample
-        sampleFunctionBinding-out-0:
-          destination: bar-stream
+        fooToBar-out-0:
+          destination: bar-stream-a
+          binder: sample
+        negate-in-0:
+          destination: foo-stream-b
+          binder: sample
+        negate-out-0:
+          destination: bar-stream-b
           binder: sample
 management:
   endpoints:

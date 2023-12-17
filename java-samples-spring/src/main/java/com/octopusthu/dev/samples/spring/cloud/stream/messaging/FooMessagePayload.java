@@ -1,17 +1,10 @@
 package com.octopusthu.dev.samples.spring.cloud.stream.messaging;
 
-import lombok.ToString;
+public class FooMessagePayload extends DummyMessagePayload<Integer> {
+    private static final String TYPE = "FOO";
 
-@ToString
-public class FooMessagePayload extends DummyMessagePayload {
-    private final String foo;
-
-    public FooMessagePayload(String dummy, String foo) {
-        super(dummy);
-        this.foo = foo;
+    public FooMessagePayload(int payload) {
+        super(TYPE, payload);
     }
 
-    public String getFoo() {
-        return foo;
-    }
 }

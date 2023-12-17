@@ -25,10 +25,10 @@ public class FooMessageProducer extends MessageProducerSupport {
     void testingReceive() {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(() -> {
-            var foo = new FooMessagePayload(destination.getName(), String.valueOf(Utils.rand.nextInt(100)));
+            var foo = new FooMessagePayload(Utils.rand.nextInt(1000));
             var m = new GenericMessage<>(foo);
+            log.info("Message " + foo + "received from destination: " + destination);
             sendMessage(m);
-            log.info("Message " + m.getPayload() + "received from destination: " + destination);
         }, 0, 5, TimeUnit.SECONDS);
     }
 }

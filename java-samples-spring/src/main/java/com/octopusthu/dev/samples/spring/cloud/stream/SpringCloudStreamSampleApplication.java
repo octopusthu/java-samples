@@ -16,10 +16,19 @@ public class SpringCloudStreamSampleApplication {
     }
 
     @Bean
-    Function<FooMessagePayload, BarMessagePayload> sampleFunctionBinding() {
+    Function<FooMessagePayload, BarMessagePayload> fooToBar() {
         return m -> {
-            var converted = new BarMessagePayload(m.getDummy(), "foo to bar: " + m.getFoo());
-            log.info("Message " + m + "converted to " + converted);
+            var converted = new BarMessagePayload(m.getPayload());
+            log.info("Message payload " + m + " converted to " + converted);
+            return converted;
+        };
+    }
+
+    @Bean
+    Function<Integer, Integer> negate() {
+        return n -> {
+            var converted = -n;
+            log.info("Integer payload " + n + " converted to " + converted);
             return converted;
         };
     }
