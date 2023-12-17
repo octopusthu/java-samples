@@ -29,7 +29,11 @@ public class IntegerMessageProducer extends MessageProducerSupport {
         executorService.scheduleWithFixedDelay(() -> {
             var m = new GenericMessage<>(Utils.rand.nextInt(1000));
             log.info("Message " + m + "received from destination: " + destination);
-            sendMessage(m);
+            try {
+                sendMessage(m);
+            } catch (Exception e) {
+                log.warn("Failed to send message: " + m, e);
+            }
         }, 0, 5, TimeUnit.SECONDS);
     }
 }

@@ -1,8 +1,8 @@
 spring:
   cloud:
     function:
-      #      definition: fooToBar;fooToBarMsg;negate
-      definition: fooToBarMsg
+      definition: fooToBar;fooToBarMsg;negate
+    #      definition: fooToBarMsg
     stream:
       bindings:
         fooToBar-in-0:

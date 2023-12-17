@@ -32,7 +32,11 @@ public class FooMessageProducer extends MessageProducerSupport {
             var foo = new FooMessagePayload(UUID.randomUUID().toString().substring(0, 5));
             var m = new GenericMessage<>(foo);
             log.info("Message " + m + "received from destination: " + destination);
-            sendMessage(m);
+            try {
+                sendMessage(m);
+            } catch (Exception e) {
+                log.warn("Failed to send message: " + m, e);
+            }
         }, 0, 5, TimeUnit.SECONDS);
     }
 }
