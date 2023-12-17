@@ -1,7 +1,8 @@
 spring:
   cloud:
     function:
-      definition: fooToBar;negate
+      #      definition: fooToBar;fooToBarMsg;negate
+      definition: fooToBarMsg
     stream:
       bindings:
         fooToBar-in-0:
@@ -10,11 +11,17 @@ spring:
         fooToBar-out-0:
           destination: bar-stream-a
           binder: sample
-        negate-in-0:
+        fooToBarMsg-in-0:
           destination: foo-stream-b
           binder: sample
-        negate-out-0:
+        fooToBarMsg-out-0:
           destination: bar-stream-b
+          binder: sample
+        negate-in-0:
+          destination: integer-stream-in
+          binder: sample
+        negate-out-0:
+          destination: integer-stream-out
           binder: sample
 management:
   endpoints:

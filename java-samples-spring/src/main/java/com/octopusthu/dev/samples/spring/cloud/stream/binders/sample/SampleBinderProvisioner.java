@@ -14,18 +14,21 @@ public class SampleBinderProvisioner
     @Override
     public ProducerDestination provisionProducerDestination(
         final String name, final ProducerProperties properties) {
-        log.info("producer destination provisioned: " + name);
-        return new SampleDestination(name);
+        var d = new SampleDestination(name, null);
+        log.info("producer destination provisioned: " + d);
+        return d;
     }
 
     @Override
     public ConsumerDestination provisionConsumerDestination(
         final String name, final String group, final ConsumerProperties properties) {
-        log.info("consumer destination provisioned: " + name);
-        return new SampleDestination(name);
+        var d = new SampleDestination(name, group);
+        log.info("consumer destination provisioned: " + d);
+        return d;
     }
 
-    private record SampleDestination(String destination) implements ProducerDestination, ConsumerDestination {
+    private record SampleDestination(String destination, String group) implements ProducerDestination,
+        ConsumerDestination {
         @Override
         public String getName() {
             return destination.trim();

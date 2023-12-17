@@ -1,7 +1,5 @@
 package com.octopusthu.dev.samples.spring.cloud.stream.binders.sample;
 
-import com.octopusthu.dev.samples.spring.cloud.stream.messaging.FooMessagePayload;
-import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -11,11 +9,11 @@ import org.springframework.integration.endpoint.MessageProducerSupport;
 import org.springframework.messaging.support.GenericMessage;
 
 @Slf4j
-public class FooMessageProducer extends MessageProducerSupport {
+public class IntegerMessageProducer extends MessageProducerSupport {
     private final ConsumerDestination destination;
 
-    public FooMessageProducer(ConsumerDestination destination) {
-        if (!destination.getName().startsWith("foo-")) {
+    public IntegerMessageProducer(ConsumerDestination destination) {
+        if (!destination.getName().startsWith("integer-")) {
             throw new IllegalArgumentException("illegal destination");
         }
         this.destination = destination;
@@ -29,8 +27,7 @@ public class FooMessageProducer extends MessageProducerSupport {
     void testingReceive() {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(() -> {
-            var foo = new FooMessagePayload(UUID.randomUUID().toString().substring(0, 5));
-            var m = new GenericMessage<>(foo);
+            var m = new GenericMessage<>(Utils.rand.nextInt(1000));
             log.info("Message " + m + "received from destination: " + destination);
             sendMessage(m);
         }, 0, 5, TimeUnit.SECONDS);

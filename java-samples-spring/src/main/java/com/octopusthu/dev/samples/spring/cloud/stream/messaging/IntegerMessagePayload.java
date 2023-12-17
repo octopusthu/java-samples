@@ -1,9 +1,9 @@
 package com.octopusthu.dev.samples.spring.cloud.stream.messaging;
 
-public class FooMessagePayload extends DummyMessagePayload<String> {
+public class IntegerMessagePayload extends DummyMessagePayload<Integer> {
     private static final String TYPE = "FOO";
 
-    public FooMessagePayload(String payload) {
+    public IntegerMessagePayload(int payload) {
         super(TYPE, payload);
     }
 }

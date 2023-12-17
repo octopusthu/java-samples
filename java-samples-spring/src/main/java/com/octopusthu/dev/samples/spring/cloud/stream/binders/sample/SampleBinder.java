@@ -21,14 +21,32 @@ public class SampleBinder extends
     @Override
     protected MessageHandler createProducerMessageHandler(
         ProducerDestination destination, ProducerProperties producerProperties, MessageChannel errorChannel) {
+        MessageHandler messageHandler = null;
+        if (destination.getName().startsWith("bar-")) {
+            messageHandler = new BarMessageHandler(destination);
+        } else if (destination.getName().startsWith("integer-")) {
+            messageHandler = new IntegerMessageHandler(destination);
+        }
+        if (messageHandler == null) {
+            throw new RuntimeException("Cannot create message handler with destination: " + destination);
+        }
         log.info("producer message handler created with destination: " + destination.getName());
-        return new BarMessageHandler(destination);
+        return messageHandler;
     }
 
     @Override
     protected MessageProducer createConsumerEndpoint(
         ConsumerDestination destination, String group, ConsumerProperties properties) {
-        log.info("consumer endpoint created with destination: " + destination.getName());
-        return new FooMessageProducer(destination);
+        MessageProducer messageProducer = null;
+        if (destination.getName().startsWith("foo-")) {
+            messageProducer = new FooMessageProducer(destination);
+        } else if (destination.getName().startsWith("integer-")) {
+            messageProducer = new IntegerMessageProducer(destination);
+        }
+        if (messageProducer == null) {
+            throw new RuntimeException("Cannot create message producer with destination: " + destination);
+        }
+        log.info("consumer endpoint created with destination: " + destination);
+        return messageProducer;
     }
 }
