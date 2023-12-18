@@ -4,7 +4,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.converter.AbstractMessageConverter;
 
-public class DummyMessageConverter extends AbstractMessageConverter {
+public class DummyMessagePayloadConverter extends AbstractMessageConverter {
     @Override
     protected boolean supports(Class<?> clazz) {
         return (DummyMessagePayload.class.isAssignableFrom(clazz));
